@@ -34,11 +34,11 @@ contract SimpleAuction {
     /// seconds bidding time on behalf of the
     /// beneficiary address `_beneficiary`.
     constructor(
-        uint _biddingTime,
+       // uint _biddingTime,
         address payable _beneficiary
     ) public {
         beneficiary = _beneficiary;
-        auctionEndTime = now + _biddingTime;
+       // auctionEndTime = now + _biddingTime;
     }
 
     /// Bid on the auction with the value sent
