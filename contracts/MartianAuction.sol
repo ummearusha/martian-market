@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.5;
 
 // taken straight from the Solidity docs
 // https://solidity.readthedocs.io/en/v0.5.10/solidity-by-example.html?highlight=auction#id2
