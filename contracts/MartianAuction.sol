@@ -3,12 +3,13 @@ pragma solidity ^0.6.0;
 // taken straight from the Solidity docs
 // https://solidity.readthedocs.io/en/v0.5.10/solidity-by-example.html?highlight=auction#id2
 // you must modify this to be compatible with the MartianMarket contract
-contract SimpleAuction {
+contract MartianAuction {
     // Parameters of the auction. Times are either
     // absolute unix timestamps (seconds since 1970-01-01)
     // or time periods in seconds.
     address payable public beneficiary;
     uint public auctionEndTime;
+    bool public ended;
 
     // Current state of the auction.
     address public highestBidder;
@@ -45,7 +46,7 @@ contract SimpleAuction {
     /// together with this transaction.
     /// The value will only be refunded if the
     /// auction is not won.
-    function bid() public payable {
+    function bid(address payable msg.sender) public payable{
         // No arguments are necessary, all
         // information is already part of
         // the transaction. The keyword payable
@@ -58,6 +59,7 @@ contract SimpleAuction {
             now <= auctionEndTime,
             "Auction already ended."
         );
+        require(!auctionEnd, "auctionEnd has already been called.");
 
         // If the bid is not higher, send the
         // money back.
