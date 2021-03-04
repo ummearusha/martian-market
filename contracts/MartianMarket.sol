@@ -12,7 +12,7 @@ contract MartianMarket is ERC721, Ownable {
     // (all but bid and withdraw)
     address payable foundationAddress = address(uint160(owner()));
 
-    mapping(uint => MartianAuction) public auctions;
+   // mapping(uint => MartianAuction) public auctions;
    // modifier landRegistered(uint token_id) {
     //    require(_exists(token_id), "Land not registered!");
      //   _;
