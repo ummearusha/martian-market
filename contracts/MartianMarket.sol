@@ -13,6 +13,11 @@ contract MartianMarket is ERC721, Ownable {
     address payable foundationAddress = address(uint160(owner()));
 
     mapping(uint => MartianAuction) public auctions;
+    modifier landRegistered(uint token_id) {
+        require(_exists(token_id), "Land not registered!");
+        _;
+    }
+
 
     function registerLand(string memory tokenURI) public payable onlyOwner {
         uint _id = totalSupply();
@@ -29,6 +34,7 @@ contract MartianMarket is ERC721, Ownable {
         require(_exists(tokenId), "Land not registered!");
         MartianAuction auction = getAuction(tokenId);
         // your code here...
+        safeTransferFrom(owner(), auction.highestBidder(), token_id);
     }
 
     function getAuction(uint tokenId) public view returns(MartianAuction auction) {
@@ -49,6 +55,9 @@ contract MartianMarket is ERC721, Ownable {
 
     function bid(uint tokenId) public payable {
         // your code here...
+        MartianAuction auction = auctions[token_id];
+        auction.bid.value(msg.value)(msg.sender);
+
     }
 
 }
